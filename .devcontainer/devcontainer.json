@@ -1,14 +1,10 @@
 {
-    "name": "Python 3.13 Data Science Environment",
-    "image": "mcr.microsoft.com/devcontainers/python:3.13",
+    "name": "Python Data Science",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
     "features": {
         "ghcr.io/devcontainers/features/python:1": {
-            "installTools": true,
-            "version": "3.13"
-        },
-        "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/devcontainers/features/node:1": {},
-        "ghcr.io/devcontainers/features/github-cli:1": {}
+            "version": "3.12"
+        }
     },
     "customizations": {
         "vscode": {
@@ -17,55 +13,22 @@
                 "ms-toolsai.jupyter",
                 "ms-python.vscode-pylance",
                 "ms-python.black-formatter",
-                "ms-python.flake8",
-                "ms-python.isort",
-                "njpwerner.autodocstring",
-                "kevinrose.vsc-python-indent",
-                "mechatroner.rainbow-csv",
-                "ms-toolsai.jupyter-keymap",
-                "ms-toolsai.jupyter-renderers",
-                "GitHub.copilot",
-                "eamodio.gitlens",
-                "ms-azuretools.vscode-docker",
-                "ms-python.mypy-type-checker"
+                "GitHub.copilot"
             ],
             "settings": {
                 "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
-                "python.analysis.extraPaths": [
-                    "/home/vscode/.local/lib/python3.13/site-packages",
-                    "/usr/local/python/current/lib/python3.13/site-packages"
-                ],
                 "python.formatting.provider": "black",
-                "python.linting.enabled": true,
-                "python.linting.flake8Enabled": true,
-                "python.linting.mypyEnabled": true,
                 "editor.formatOnSave": true,
-                "editor.codeActionsOnSave": {
-                    "source.organizeImports": true
-                },
-                "jupyter.notebookFileRoot": "${workspaceFolder}",
-                "python.analysis.typeCheckingMode": "basic"
+                "jupyter.notebookFileRoot": "${workspaceFolder}"
             }
         }
     },
-    "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && pre-commit install",
-    "postStartCommand": "git config --global pull.rebase true",
-    "remoteEnv": {
-        "PYTHONPATH": "${containerWorkspaceFolder}:/home/vscode/.local/lib/python3.13/site-packages:/usr/local/python/current/lib/python3.13/site-packages",
-        "JUPYTER_ENABLE_LAB": "yes",
-        "PYTHONUNBUFFERED": "1"
-    },
+    "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt",
     "forwardPorts": [8888],
     "portsAttributes": {
         "8888": {
             "label": "Jupyter",
             "onAutoForward": "notify"
         }
-    },
-    "containerEnv": {
-        "PYTHONDONTWRITEBYTECODE": "1"
-    },
-    "runArgs": [
-        "--shm-size=1g"
-    ]
+    }
 }
